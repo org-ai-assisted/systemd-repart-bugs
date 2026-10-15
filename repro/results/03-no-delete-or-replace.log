@@ -1,0 +1,34 @@
+== run 1: adopt existing ext4 partition, def asks Format=vfat ==
+TYPE          LABEL UUID                                 PARTNO FILE          RAW SIZE          SIZE PADDING
+linux-generic data  3e66f330-a4d3-44d3-8ef3-ed80ce48d9e7 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
+                                                                                          S = 126.9M S = 0B
+
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-
+ `- 10-test.conf
+
+Applying changes to /dev/loop0.
+Growing existing partition 0.
+Setting partition label of existing partition 0.
+Writing new partition table.
+Telling kernel to reread partition table.
+All done.
+exit=0 fstype=ext4
+== run 2: identical def, nothing to change ==
+TYPE          LABEL UUID                                 PARTNO FILE          RAW SIZE       SIZE PADDING
+linux-generic data  3e66f330-a4d3-44d3-8ef3-ed80ce48d9e7 0      10-test.conf 133148672     126.9M 0B
+                                                                                       S = 126.9M S = 0B
+
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-
+ `- 10-test.conf
+
+No changes.
+== observed ==
+fstype after run1: ext4 (def wanted vfat)
+fstype after run2: ext4
+run2 said No changes.: yes
+  ok   run1 exit 0 (got=0)
+  ok   run2 exit 0 (got=0)
+  ok   ext4 NOT replaced (got=ext4)
+  ok   still ext4 after run2 (got=ext4)
+  ok   run2 reported No changes (got=yes)
+RESULT: PASS (issue reproduced as documented)

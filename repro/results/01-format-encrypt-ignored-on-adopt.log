@@ -1,0 +1,27 @@
+== running systemd-repart (adopt existing Type=linux-generic partition) ==
+TYPE          LABEL       UUID                                 PARTNO FILE          RAW SIZE          SIZE PADDING
+linux-generic persistence 73df67d5-edee-4009-a959-dd022739bd08 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
+                                                                                                S = 126.9M S = 0B
+
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-
+ `- 10-test.conf
+
+Applying changes to /dev/loop0.
+Growing existing partition 0.
+Setting partition label of existing partition 0.
+Writing new partition table.
+Telling kernel to reread partition table.
+All done.
+repart exit code: 0
+== observed ==
+name:     persistence
+fstype:   ext4
+sectors:  40960 -> 260056
+sentinel: yes
+  ok   repart exit 0 (got=0)
+  ok   renamed to Label (got=persistence)
+  ok   grew to fill disk (got=yes)
+  ok   fstype still plain ext4 (got=ext4)
+  ok   NOT LUKS-encrypted (got=no)
+  ok   stale data survived (got=yes)
+RESULT: PASS (issue reproduced as documented)
