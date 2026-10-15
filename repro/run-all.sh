@@ -31,8 +31,9 @@ results="results"
 rm --recursive --force -- "${results}"
 mkdir --parents -- "${results}"
 
-## Clean any loop/dm residue left by an interrupted earlier run.
-losetup --detach-all 2>/dev/null || true
+## Each repro attaches its own loop device and detaches it in its EXIT trap, so
+## no suite-wide loop cleanup is needed here. A host-wide `losetup --detach-all`
+## would tear out unrelated loop devices (mounted snaps, ISOs, image builds).
 
 ## First line of each version string, without a head-on-pipe SIGPIPE.
 sctl_ver="$(systemctl --version)"

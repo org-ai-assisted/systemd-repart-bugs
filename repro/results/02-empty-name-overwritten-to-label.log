@@ -1,6 +1,6 @@
 == running systemd-repart (Label= only, no Format/Encrypt) ==
 TYPE          LABEL             UUID                                 PARTNO FILE          RAW SIZE          SIZE PADDING
-linux-generic adopted-by-repart 12da7641-e2e3-446c-ada9-299e0d339bab 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
+linux-generic adopted-by-repart 742d2a6e-f002-45fe-b292-416c470edfee 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
                                                                                                       S = 126.9M S = 0B
 
  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-
