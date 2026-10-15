@@ -1,6 +1,6 @@
 == running systemd-repart (adopt existing Type=linux-generic partition) ==
 TYPE          LABEL       UUID                                 PARTNO FILE          RAW SIZE          SIZE PADDING
-linux-generic persistence 70c308b4-e129-43f5-83a2-ef2645d20231 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
+linux-generic persistence bd3ec8b6-3ada-44ac-a7cd-4a4979b7f9c2 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
                                                                                                 S = 126.9M S = 0B
 
  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-

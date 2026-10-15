@@ -67,9 +67,9 @@ do
   fi
 done
 
-## Hand the root-created evidence back to the sync user so the next pull/sync
-## (which runs unprivileged) can overwrite it.
-chmod --recursive a+rwX -- "${results}"
+## Hand the root-created evidence back to the invoking (sudo) user so the next
+## unprivileged pull/sync can overwrite it. Ownership alone suffices -- the owner
+## already has write via the default mode, so no world-writable bits are added.
 if [ -n "${SUDO_UID:-}" ]; then
   chown --recursive "${SUDO_UID}:${SUDO_GID:-${SUDO_UID}}" -- "${results}"
 fi
