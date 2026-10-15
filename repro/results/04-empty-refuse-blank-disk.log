@@ -1,0 +1,27 @@
+== run with DEFAULT --empty=refuse on a blank (no-GPT) disk ==
+Disk /dev/loop0 has no GPT disk label, not repartitioning.
+== run with --empty=allow on the same blank disk ==
+TYPE          LABEL UUID                                 PARTNO FILE          RAW SIZE       SIZE PADDING
+linux-generic data  dc9b312c-8434-432f-81c5-f68c634691cd 0      10-test.conf 133148672  -> 126.9M -> 0B
+                                                                                       S = 126.9M S = 0B
+
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-
+ `- 10-test.conf
+
+Applying changes to /dev/loop0.
+Wiped block device.
+Discarded entire block device.
+Successfully wiped file system signatures from future partition 0.
+Adding new partition 0 to partition table.
+Writing new partition table.
+Telling kernel to reread partition table.
+All done.
+== observed ==
+default --empty=refuse exit: 77 (expected 77)
+refuse message mentioned no-GPT: yes
+empty=allow exit: 0, partition name: data
+  ok   refuse exits 77 (got=77)
+  ok   refuse explains no-GPT (got=yes)
+  ok   empty=allow succeeds (got=0)
+  ok   empty=allow made partition (got=data)
+RESULT: PASS (issue reproduced as documented)
