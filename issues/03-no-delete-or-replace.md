@@ -21,9 +21,12 @@ partition exists and matches a definition by `Type=`:
 - a repeated run with no structural change is a no-op: repart prints
   `No changes.` and exits `0`.
 
-There is no `--force`-style option to make repart replace or reformat an existing
-partition. To re-provision a partition you must delete it yourself first (e.g.
-`sgdisk --delete`), then let repart recreate it.
+There is no option to make repart selectively replace or reformat a single
+existing partition. To re-provision one partition while keeping the others you
+must delete that partition yourself first (e.g. `sgdisk --delete`), then let
+repart recreate it. (`--empty=force` is not a selective path: it erases the
+**entire** disk and writes a fresh table, destroying every existing partition --
+see [issue 04](04-empty-refuse-blank-disk.md).)
 
 ### Definition used
 
@@ -76,9 +79,11 @@ github.com/systemd/systemd requesting a general delete/replace/reformat verb.
   only grows existing and adds new partitions; it does not shrink, delete or move
   existing partitions."
   - https://manpages.debian.org/testing/systemd/systemd-repart.8
-- The only sanctioned deletion path is factory reset: partitions marked
-  `FactoryReset=yes` are erased and recreated on a factory-reset boot. This is a
-  narrow, opt-in mechanism, not a general reformat verb.
+- The only sanctioned path for repart to erase and recreate *specific* existing
+  partitions is factory reset: partitions marked `FactoryReset=yes` are erased
+  and recreated on a factory-reset boot. This is a narrow, opt-in mechanism, not
+  a general per-partition reformat verb. (The whole-disk `--empty=force` wipe is
+  the only other destructive mode, and it takes out every partition at once.)
   - https://github.com/systemd/systemd/blob/main/docs/FACTORY_RESET.md
   - `repart.d(5)` **FactoryReset=**:
     https://manpages.debian.org/testing/systemd/repart.d.5

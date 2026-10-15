@@ -7,10 +7,12 @@
 
 ## Issue 4: on a blank disk with NO partition table, systemd-repart's default
 ## --empty=refuse refuses to act and exits 77 ("... has no GPT disk label, not
-## repartitioning."). Initializing a blank existing disk requires --empty=allow
-## (or force). Surprising next to sfdisk/sgdisk, which happily write a fresh
-## table. (--empty=create is for a MISSING image file, not an existing blank
-## block device -- on a loop device it fails with "File exists".)
+## repartitioning."). Initializing a blank existing disk requires --empty=allow,
+## which extends or creates a table without disturbing existing partitions.
+## Surprising next to sfdisk/sgdisk, which happily write a fresh table.
+## (--empty=create is for a MISSING image file, not an existing blank block
+## device -- on a loop device it fails "File exists". --empty=force is NOT a
+## drop-in for allow: it erases the whole disk unconditionally.)
 
 set -o errexit
 set -o nounset

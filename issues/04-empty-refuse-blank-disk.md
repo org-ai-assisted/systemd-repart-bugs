@@ -17,13 +17,22 @@ systemd-repart defaults to `--empty=refuse`. On a disk that has **no** GPT
 partition table, that default makes repart refuse to do anything: it exits `77`
 with `Disk /dev/... has no GPT disk label, not repartitioning.`
 
-To initialize a truly blank existing disk you must pass `--empty=allow` (or
-`force`). This surprises anyone coming from `sfdisk`/`sgdisk`, which happily
-write a fresh table onto a blank disk by default.
+To initialize a truly blank existing disk you must pass `--empty=allow`, which
+"extend[s] an existing partition table or create[s] a new one if none exists"
+(`systemd-repart(8)`) -- it does not disturb any partitions already present.
+This surprises anyone coming from `sfdisk`/`sgdisk`, which happily write a fresh
+table onto a blank disk by default. This reproduction only exercises
+`--empty=allow`.
 
-(Note: `--empty=create` is for creating a backing image **file** that does not
-yet exist; on an existing blank block device it fails with `File exists`. The
-option that works on an existing blank device is `--empty=allow`/`force`.)
+Note the other modes are **not** interchangeable with `allow`:
+
+- `--empty=create` creates a backing image **file** that does not yet exist; on
+  an existing blank block device it fails with `File exists`.
+- `--empty=force` writes a fresh partition table **unconditionally, erasing the
+  disk fully** -- "no existing partitions will be taken into account or survive
+  the operation. Hence: use with care, this is a great way to lose all your
+  data" (`systemd-repart(8)`). It is for a deliberate full wipe, never a drop-in
+  for `allow` on a disk that may already hold partitions.
 
 ### Observed (from `repro/results/04-...log`)
 
