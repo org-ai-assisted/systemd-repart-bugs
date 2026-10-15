@@ -86,6 +86,9 @@ settle_partitions() {
     fi
     sleep 0.3
   done
+  ## Fail loud rather than letting a caller run mkfs/checks on a missing node.
+  printf '%s\n' "ERROR: ${repro_loop}p1 did not appear after waiting." >&2
+  return 1
 }
 
 ## format_ext4_with_sentinel <sentinel-text>: mkfs ext4 on p1, write a file so

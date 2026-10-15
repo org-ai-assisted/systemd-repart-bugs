@@ -1,6 +1,6 @@
 == run 1: adopt existing ext4 partition, def asks Format=vfat ==
 TYPE          LABEL UUID                                 PARTNO FILE          RAW SIZE          SIZE PADDING
-linux-generic data  d0a0cc94-8c81-4f24-ad54-a6d51209e207 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
+linux-generic data  58e2522f-2cd9-4b4e-91eb-b63186dd2c37 0      10-test.conf 133148672 20M -> 126.9M 106.9M -> 0B
                                                                                           S = 126.9M S = 0B
 
  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-
@@ -15,7 +15,7 @@ All done.
 exit=0 fstype=ext4
 == run 2: identical def, nothing to change ==
 TYPE          LABEL UUID                                 PARTNO FILE          RAW SIZE       SIZE PADDING
-linux-generic data  d0a0cc94-8c81-4f24-ad54-a6d51209e207 0      10-test.conf 133148672     126.9M 0B
+linux-generic data  58e2522f-2cd9-4b4e-91eb-b63186dd2c37 0      10-test.conf 133148672     126.9M 0B
                                                                                        S = 126.9M S = 0B
 
  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-

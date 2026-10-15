@@ -44,7 +44,7 @@ repart_ver="$(systemd-repart --version)"
   printf '%s\n' "== environment =="
   printf '%s\n' "${sctl_ver%%$'\n'*}"
   printf '%s\n' "${repart_ver%%$'\n'*}"
-  printf '%s\n' "os: ${PRETTY_NAME}"
+  printf '%s\n' "os: ${PRETTY_NAME:-${NAME:-Linux}}"
 } | tee "${results}/env.txt"
 printf '%s\n' ""
 
